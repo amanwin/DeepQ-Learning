@@ -238,3 +238,97 @@ After this, you can train the deep reinforcement learning network as discussed.
 **Additional Resources:**
 [Playing Atari with Deep Reinforcement Learning](https://arxiv.org/pdf/1312.5602.pdf) - This is the paper that the professor has referred to in the video above.
 
+## Architectures of Deep Q-Learning
+
+### Introduction
+In the previous session, you learnt to make a DQN using the (state-action) pair as the input.
+
+In this session, you will study two architectures of the family of Deep Q-networks (DQN). You will also learn to implement one of these architectures in Python.
+
+### Architectures of Deep Q-Network
+In this segment, you will study two variations in the architecture of the Deep Q-networks we had discussed in the previous session.
+
+The DQN architecture that you have seen until now had two inputs : state and action. However, there are some disadvantages of this architecture. Let's study them in the following lecture. 
+
+You have already seen this architecture to approximate the Q-value.
+
+![title](img/architecture1.JPG)
+
+![title](img/architecture2.JPG)
+
+### DQN Architecture II - Visualisation
+You have seen two variations in the architecture of DQN. Let's now see how you can train the second architecture.
+* First, generate the experience using epsilon-greedy policy
+* Store the experience in the memory
+
+![title](img/experience.png)
+
+* Find the Q(s, a) and Q(s', a) from the Q-Network.
+
+![title](img/experience1.png)
+
+![title](img/experience2.JPG)
+
+![title](img/training_the_model.png)
+
+* Use the trained Q network to generate another experience and continue the training.
+
+In the next segment you will learn to write the code for training a deep Q-network
+
+### Comprehension - DQN Code Snippet
+Let's now see how we can write the code for training a deep Q-network. 
+
+![title](img/model_training.JPG)
+
+![title](img/code1.JPG)
+
+![title](img/code2.JPG)
+
+![title](img/code3.JPG)
+
+![title](img/code4.JPG)
+
+![title](img/code5.JPG)
+
+### DQN Demo - Cartpole Environment
+In this segment, you will go through the code demo of Deep Q Learning.  [CartPole-v0](https://gym.openai.com/envs/CartPole-v0/) is used from the OpenAI Gym environment:
+
+![title](img/cartpole1.png)
+
+You are required to balance the cartpole for as long as possible, but for simplicity, let's balance it for **500 time steps**. So, the maximum length of the episode is 500 timesteps. The episode ends before 500 timesteps if the pole falls off.
+
+Let's understand the problem statement now. 
+
+In the following segment, the we will walk you through the code of DQN.  We will explain the code demo of Double DQN, which will come in the next few segments. Some more details of the Cartpole environment from OpenAI gym are in the following segment. 
+
+
+You can download the Python code for DQN below. 
+
+[Python: DQN](dataset/DQN+code)
+
+Here, the state is represented by 4 values (Cart Position, Cart Velocity, Pole Angle, Pole Velocity at Tip) and at every timestep, the cart can take two actions (Push cart to the left, Push cart to the right).
+
+### Double DQN - A DQN Variation
+This DQN is one of the variations of DQN. In this architecture, you create two Q-networks as opposed to just one.  The training process is almost the same as the original deep Q-network, except for some minor variations. 
+
+#### Advantage in Double DQN
+During training, until an episode ends, only the parameters of the Q-network are updated, just like you do for a DQN architecture. The parameters of the target network are not updated.  If you are constantly shifting the predicted and target Q-values to update the network as in DQN,  it can become destabilised by falling into feedback loops between the predicted and target Q-values.
+
+![title](img/double_dqn.JPG)
+
+Please note that this architecture will be explained through a demo in the subsequent segments. 
+
+![title](img/2Qnetwork.png)
+
+There are basically **two differences** between the DQN and the double DQN:
+
+![title](img/double_dqn1.JPG)
+
+These are the only two changes.
+
+### Double DQN Demo - I
+You already know to implement the DQN algorithm. Now we will go through the double DQN algorithm. 
+
+You can download the commented notebook below. You can test the saved model after training by making epsilon = 0. The code to test the model is also attached. 
+
+[Double DQN](dataset/Deep_Q_Learning(2+Models).zip)
